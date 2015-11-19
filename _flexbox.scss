@@ -1,0 +1,159 @@
+/* -- flexbox utilities -- */
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($value) {
+  -webkit-box-flex: $value;
+  -moz-box-flex: $value;
+  -webkit-flex: $value;
+  -ms-flex: $value;
+  flex: $value;
+}
+
+
+/**
+  align-items:
+  flex-start - top
+  flex-end - bottom
+  center - vertical center
+  baseline - align text baseline
+  stretch - fill container
+**/
+
+@mixin flex-align-items($value) {
+  -webkit-align-items: $value;
+  -ms-flex-align: $value;
+  align-items: $value;
+}
+
+
+
+/**
+  flex-direction:
+  row - same as text direction
+  row-reverse - reverse of row
+  column - top to bottom
+  column-reverse - reverse of column
+**/
+
+@mixin flex-direction($value) {
+  -webkit-flex-direction: $value;
+  -ms-flex-direction: $value;
+  flex-direction: $value;
+}
+
+
+
+/**
+  flex-wrap:
+  nowrap - single line, overflows
+  wrap - multilines, same as text direction
+  wrap-reverse - multilines, opposite to direction defined by flex-direction
+**/
+
+@mixin flex-wrap($value) {
+  -webkit-flex-wrap: $value;
+  -ms-flex-wrap: $value;
+  flex-wrap: $value;
+}
+
+
+
+/**
+  order:
+  integer
+**/
+
+@mixin flex-order($value) {
+  -webkit-order: $value;
+  -moz-order: $value;
+  -o-box-ordinal-group: $value;
+  -ms-flex-order: $value;
+  -webkit-order: $value;
+  order: $value;
+}
+
+
+
+/**
+  justify-content:
+  flex-start - items towards start line
+  flex-end - items towards end line
+  center - centered
+  space-between - evenly distributed in the line
+  space-around - evenly distributed in the line with equal space around them
+**/
+
+@mixin flex-justify-content($value) {
+  $ms-value: justify;
+
+  @if $value == 'space-between' {
+    $ms-value: justify;
+  } @else if $value == 'space-around' {
+    $ms-value: distribute;
+  } @else if $value == 'flex-start' {
+    $ms-value: start;
+  } @else if $value == 'flex-end' {
+    $ms-value: end;
+  } @else if $value == 'center' {
+    $ms-value: center;
+  }
+
+  -webkit-justify-content: $value;
+  -ms-flex-pack: $ms-value;
+  justify-content: $value;
+}
+
+
+
+
+
+/* -- flexbox ready-to-use alignment mixins -- */
+
+/* align items to the center */
+
+@mixin flex-align-center {
+  @include flexbox;
+  @include flex-align-items(center);
+  @include flex-direction(row);
+  @include flex-wrap(wrap)
+}
+
+
+
+/* stretch items to fill container vertically */
+
+@mixin flex-align-stretch {
+  @include flexbox;
+  @include flex-align-items(stretch);
+  @include flex-direction(row);
+  @include flex-wrap(wrap);
+}
+
+
+
+/* align items to top */
+
+@mixin flex-align-top {
+  @include flexbox;
+  @include flex-align-items(flex-start);
+  @include flex-direction(row);
+  @include flex-wrap(wrap);
+}
+
+
+
+/* align items to bottom */
+
+@mixin flex-align-bottom {
+  @include flexbox;
+  @include flex-align-items(flex-end);
+  @include flex-direction(row);
+  @include flex-wrap(wrap);
+}
